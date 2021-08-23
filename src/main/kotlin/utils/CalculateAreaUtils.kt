@@ -2,16 +2,17 @@ package utils
 
 import kotlin.math.pow
 
+@Deprecated("Change implementation to Shape Class")
 object CalculateAreaUtils {
-    fun calculateAreaRectangle(length:Int, width:Int): Int {
+    fun calculateAreaRectangle(length: Int, width: Int): Int {
         return length.times(width)
     }
 
-    fun calculateAreaCircle(radius:Int): Double {
+    fun calculateAreaCircle(radius: Int): Double {
         return 3.14.times(radius.toDouble().pow(2))
     }
 
-    fun calculateAreaTriangle(base:Int,height:Int): Double {
+    fun calculateAreaTriangle(base: Int, height: Int): Double {
         return 0.5.times(base.times(height))
     }
 }

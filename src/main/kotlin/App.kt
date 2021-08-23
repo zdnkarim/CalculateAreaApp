@@ -1,6 +1,14 @@
+import shape.Circle
+import shape.Rectangle
+import shape.Shape
+import shape.Triangle
+import sun.security.util.Length
 import utils.CalculateAreaUtils
+import utils.StarGeneratorUtils
 
 class App {
+    private var StarGeneratorUtils = utils.StarGeneratorUtils()
+
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
@@ -24,8 +32,9 @@ class App {
             1. Calculate Rectangle Area
             2. Calculate Circle Area
             3. Calculate Triangle Area
+            4. Print Star
             ======================================
-            Enter menu ? (1/2/3)
+            Enter menu ? (1/2/3/4)
             ======================================
         """.trimIndent()
         )
@@ -47,6 +56,10 @@ class App {
 
                 openMenuTriangle()
             }
+            "4" -> {
+
+                openMenuPrintStar()
+            }
             else -> {
                 println("no menu matches")
                 start()
@@ -57,23 +70,36 @@ class App {
 
     private fun openMenuRectangle() {
         print("Input Length : ")
-        val l = readLine()?.toInt() ?: 0
+        val length = readLine()?.toInt() ?: 0
         print("Input Width : ")
-        val w = readLine()?.toInt() ?: 0
-        print("Area of rectangle is ${CalculateAreaUtils.calculateAreaRectangle(l, w)}")
+        val width = readLine()?.toInt() ?: 0
+        printShape(Rectangle(length, width))
     }
 
     private fun openMenuCircle() {
         print("Input Radius : ")
-        val r = readLine()?.toInt() ?: 0
-        print("Area of circle is ${CalculateAreaUtils.calculateAreaCircle(r)}")
+        val radius = readLine()?.toInt() ?: 0
+        printShape(Circle(radius))
     }
 
     private fun openMenuTriangle() {
         print("Input Base : ")
-        val b = readLine()?.toInt() ?: 0
+        val base = readLine()?.toInt() ?: 0
         print("Input Heigt : ")
-        val h = readLine()?.toInt() ?: 0
-        print("Area of triangle is ${CalculateAreaUtils.calculateAreaRectangle(b, h)}")
+        val height = readLine()?.toInt() ?: 0
+        print("Input Hypotenusa : ")
+        val hypotenusa = readLine()?.toInt() ?: 0
+        printShape(Triangle(height, base, hypotenusa))
+    }
+
+    private fun openMenuPrintStar() {
+        print("Input Total Star (max:20) : ")
+        val s = readLine()?.toInt() ?: 0
+        StarGeneratorUtils.printStars(s)
+    }
+
+    private fun printShape(shape: Shape) {
+        shape.printShapeName()
+        shape.calculateAreaAndCircular()
     }
 }
